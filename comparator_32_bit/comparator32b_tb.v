@@ -25,7 +25,7 @@ end
 task check_result;
     input expected_gr, expected_lt, expected_eq;
     begin
-        if (gr === expected_gr && lt === expected_lt && eq === expected_eq) begin
+        if (gr == expected_gr && lt == expected_lt && eq == expected_eq) begin
             $display("Test Passed! a = %h, b = %h | gr = %b, lt = %b, eq = %b", a, b, gr, lt, eq);
         end else begin
             $display("Test Failed! a = %h, b = %h | gr = %b (expected %b), lt = %b (expected %b), eq = %b (expected %b)", a, b, gr, expected_gr, lt, expected_lt, eq, expected_eq);
