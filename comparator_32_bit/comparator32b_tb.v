@@ -3,7 +3,7 @@ module comparator32b_tb;
     reg [31:0] a, b;
     wire gr, lt, eq;
 
-    comparator32b uut (
+    comparator32b u_dut (
         .a0(a[0]),  .a1(a[1]),  .a2(a[2]),  .a3(a[3]),  .a4(a[4]),  .a5(a[5]),  .a6(a[6]),  .a7(a[7]),
         .a8(a[8]),  .a9(a[9]),  .a10(a[10]), .a11(a[11]), .a12(a[12]), .a13(a[13]), .a14(a[14]), .a15(a[15]),
         .a16(a[16]), .a17(a[17]), .a18(a[18]), .a19(a[19]), .a20(a[20]), .a21(a[21]), .a22(a[22]), .a23(a[23]),
@@ -17,42 +17,40 @@ module comparator32b_tb;
         .gr(gr), .lt(lt), .eq(eq)
     );
 
-    initial begin
-        $dumpfile("comparator32b_wave.vcd");
-        $dumpvars(0, comparator32b_tb);
-    end
+initial begin
+    $dumpfile("comparator32b_wave.vcd");
+    $dumpvars(0, comparator32b_tb);
+end
 
-    task check_result;
-        input expected_gr, expected_lt, expected_eq;
-        begin
-            if (gr === expected_gr && lt === expected_lt && eq === expected_eq) begin
-                $display("Test Passed! a = %h, b = %h | gr = %b, lt = %b, eq = %b", 
-                         a, b, gr, lt, eq);
-            end else begin
-                $display("Test Failed! a = %h, b = %h | gr = %b (expected %b), lt = %b (expected %b), eq = %b (expected %b)", 
-                         a, b, gr, expected_gr, lt, expected_lt, eq, expected_eq);
-            end
+task check_result;
+    input expected_gr, expected_lt, expected_eq;
+    begin
+        if (gr === expected_gr && lt === expected_lt && eq === expected_eq) begin
+            $display("Test Passed! a = %h, b = %h | gr = %b, lt = %b, eq = %b", a, b, gr, lt, eq);
+        end else begin
+            $display("Test Failed! a = %h, b = %h | gr = %b (expected %b), lt = %b (expected %b), eq = %b (expected %b)", a, b, gr, expected_gr, lt, expected_lt, eq, expected_eq);
         end
-    endtask
-
-    initial begin
-        $display("===== START TESTING comparator32b =====");
-
-        a = 32'h00000000; b = 32'h00000000; #10 check_result(0, 0, 1);
-        a = 32'h00000001; b = 32'h00000000; #10 check_result(1, 0, 0);
-        a = 32'h00000000; b = 32'h00000001; #10 check_result(0, 1, 0);
-        a = 32'h80000000; b = 32'h7FFFFFFF; #10 check_result(1, 0, 0);
-        a = 32'h7FFFFFFF; b = 32'h80000000; #10 check_result(0, 1, 0);
-        a = 32'hFFFFFFFF; b = 32'hFFFFFFFF; #10 check_result(0, 0, 1);
-        a = 32'hAAAAAAAA; b = 32'h55555555; #10 check_result(1, 0, 0);
-        a = 32'hCCCCCCCC; b = 32'hCCCCCCCB; #10 check_result(1, 0, 0);
-        a = 32'h6D6D6D6D; b = 32'h6D6D6D6D; #10 check_result(0, 0, 1);
-        a = 32'h33333333; b = 32'hCCCCCCCC; #10 check_result(0, 1, 0);
-        a = 32'h55555555; b = 32'h55555555; #10 check_result(0, 0, 1);
-        a = 32'hFFFFFFFE; b = 32'hFFFFFFFF; #10 check_result(0, 1, 0);
-
-        $display("===== TEST COMPLETED =====");
-        $finish;
     end
+endtask
+
+initial begin
+    $display("===== START TESTING comparator32b =====");
+
+    a = 32'h00000000; b = 32'h00000000; #10 check_result(0, 0, 1);
+    a = 32'h00000001; b = 32'h00000000; #10 check_result(1, 0, 0);
+    a = 32'h00000000; b = 32'h00000001; #10 check_result(0, 1, 0);
+    a = 32'h80000000; b = 32'h7FFFFFFF; #10 check_result(1, 0, 0);
+    a = 32'h7FFFFFFF; b = 32'h80000000; #10 check_result(0, 1, 0);
+    a = 32'hFFFFFFFF; b = 32'hFFFFFFFF; #10 check_result(0, 0, 1);
+    a = 32'hAAAAAAAA; b = 32'h55555555; #10 check_result(1, 0, 0);
+    a = 32'hCCCCCCCC; b = 32'hCCCCCCCB; #10 check_result(1, 0, 0);
+    a = 32'h6D6D6D6D; b = 32'h6D6D6D6D; #10 check_result(0, 0, 1);
+    a = 32'h33333333; b = 32'hCCCCCCCC; #10 check_result(0, 1, 0);
+    a = 32'h55555555; b = 32'h55555555; #10 check_result(0, 0, 1);
+    a = 32'hFFFFFFFE; b = 32'hFFFFFFFF; #10 check_result(0, 1, 0);
+
+    $display("===== TEST COMPLETED =====");
+    $finish;
+end
 
 endmodule
