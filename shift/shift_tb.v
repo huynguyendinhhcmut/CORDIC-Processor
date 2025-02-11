@@ -14,7 +14,7 @@ end
 task check_result;
     input [31:0] expected_shifted;
     begin
-        if (shifted === expected_shifted) begin
+        if (shifted == expected_shifted) begin
             $display("Test Passed! a = %h, rightleft = %b | shifted = %h", a, rightleft, shifted);
         end else begin
             $display("Test Failed! a = %h, rightleft = %b | shifted = %h (expected %h)", a, rightleft, shifted, expected_shifted);
