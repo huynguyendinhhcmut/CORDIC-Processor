@@ -18,7 +18,7 @@ task check_result;
     input [31:0] expected_sum;
     input expected_cout;
     begin
-        if (sum === expected_sum && cout === expected_cout) begin
+        if (sum == expected_sum && cout == expected_cout) begin
             $display("Test Passed! a = %h, b = %h, cin = %b | sum = %h, cout = %b", a, b, cin, sum, cout);
             pass_count = pass_count + 1;
         end else begin
