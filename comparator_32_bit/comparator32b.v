@@ -1,7 +1,7 @@
 module comparator32b (
 	input wire a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31,
 	input wire b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16, b17, b18, b19, b20, b21, b22, b23, b24, b25, b26, b27, b28, b29, b30, b31,
-	output reg gr, lt, eq
+	output wire gr, lt, eq
 );
 
 wire gr1, gr2, gr3, gr4;
@@ -28,7 +28,7 @@ endmodule
 module comparator10b (
 	input wire a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, 
 	input wire b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, 
-	output reg gr, lt, eq
+	output wire gr, lt, eq
 );
 
 wire gr1, gr2, lt1, lt2;
@@ -41,7 +41,7 @@ endmodule
 
 module comparator4b (
 	input wire a0, a1, a2, a3, b0, b1, b2, b3,
-    	output reg gr, lt, eq
+    	output wire gr, lt, eq
 );
 
 wire gr1, gr2, lt1, lt2, eq1, eq2;
@@ -57,7 +57,7 @@ endmodule
 
 module comparator2b (
     	input wire a0, a1, b0, b1,
-    	output reg gr, lt, eq
+    	output wire gr, lt, eq
 );
 
 assign gr = (a0 & ~b1 & ~b0) | (a1 & ~b1) | (a1 & a0 & ~b0);
