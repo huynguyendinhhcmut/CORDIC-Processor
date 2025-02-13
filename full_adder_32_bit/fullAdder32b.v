@@ -1,8 +1,8 @@
 module fullAdder32b (
         input wire [31:0] a, b,
         input wire cin,
-        output reg [31:0] sum,
-        output reg cout
+        output wire [31:0] sum,
+        output wire cout
 );
 
 wire [31:0] carry;
@@ -45,7 +45,7 @@ endmodule
 
 module fullAdder (
         input wire a, b, cin,
-        output reg sum, cout
+        output wire sum, cout
 );
 
 assign sum = a ^ b ^ cin;
