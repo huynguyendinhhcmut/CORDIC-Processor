@@ -1,11 +1,11 @@
 module shift (
-	input wire [31:0] data_in,
-	input wire rightleft, arith,
-	input wire [4:0] shift_amount,
-	output reg [31:0] data_out
+	input logic [31:0] data_in,
+	input logic rightleft, arith,
+	input logic [4:0] shift_amount,
+	output logic [31:0] data_out
 );
 
-reg [31:0] data1, data2, data3, data4, data5, data6;
+logic [31:0] data1, data2, data3, data4, data5, data6;
 
 always @(*) begin
 	case (rightleft)

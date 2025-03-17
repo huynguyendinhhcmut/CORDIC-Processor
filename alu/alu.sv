@@ -25,16 +25,9 @@ always @(*) begin
 						result [31:0] = sum;					// a + b
 					end
 		4'b0001: begin
-				case (cout)
-					1'b0: begin
-						result [63:32] = 32'b0;
-						result [31:0] = sum;
-					end					// a - b
-					1'b1: begin
-						result [63:32] = 32'hffffffff;
-						result [31:0] = sum;
-					end
-				endcase
+						result [63:33] = 32'b0;
+						result [32] = cout;
+						result [31:0] = sum;					// a - b
 			end
 		4'b0010: result = mul;									// a * b
 		4'b0011: begin
@@ -60,6 +53,7 @@ always @(*) begin
 		4'b1000: begin
 						result [63:32] = 32'b0;
 						result [31:0] = shifted;				// right shift arithmetic
+					
 					end	
 		4'b1001: begin
 						case (eq) 
