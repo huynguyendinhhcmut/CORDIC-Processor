@@ -117,7 +117,6 @@ module normalized (
 	output logic [7:0] resultExponent
 );
 
-logic [7:0] pre_resultExponent;
 logic [4:0] pre_addsubAmountExponent, addsubAmountExponent;
 logic addsub;
 logic [22:0] pre_resultOperand1, pre_resultOperand2, pre_resultOperand3;
@@ -126,7 +125,7 @@ encoder32to5 encoder3251 (.a(sumOperand), .b(pre_addsubAmountExponent));
 
 mux32to1 addsubExp (.a(pre_addsubAmountExponent), .b(addsubAmountExponent), .addsub(addsub));
 
-fullAdder8b finalExponent (.a(bigExponent), .b({3'b000, addsubAmountExponent}), .cin(addsub), .sum(pre_resultExponent));
+fullAdder8b finalExponent (.a(bigExponent), .b({3'b000, addsubAmountExponent}), .cin(addsub), .sum(resultExponent));
 
 always @(*) begin
 	case (addsubAmountExponent)
@@ -185,13 +184,6 @@ always @(*) begin
 	case (&resultExponent)
 		1'b0: resultOperand = pre_resultOperand3;
 		1'b1: resultOperand = 22'b0;
-	endcase
-end
-
-always @(*) begin
-	case (&(~sumOperand))
-		1'b0: resultExponent = pre_resultExponent;
-		1'b1: resultExponent = 8'b0;
 	endcase
 end
 
@@ -583,3 +575,4 @@ fullAdder fa8 (.sum(sum[7]),   .a(a[7]),  .b(b[7]^cin),  .cin(carry[6]),  .cout(
 xor (cout, carry[7], cin);
 
 endmodule
+
