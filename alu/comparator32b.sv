@@ -1,15 +1,15 @@
 module comparator32b (
-	input logic [31:0] a, b,
-	input logic sign,
-	output logic Gr, Lt, Eq
+	input wire [31:0] a, b,
+	input wire sign,
+	output reg Gr, Lt, Eq
 );
 
-logic gr, gr1, gr2, gr3, gr4;
-logic lt, lt1, lt2, lt3, lt4;
-logic eq;
+wire gr, gr1, gr2, gr3, gr4;
+wire lt, lt1, lt2, lt3, lt4;
+wire eq;
 
-logic greaterSigned, lessSigned, equalSigned;
-logic [3:0] signCheck;
+wire greaterSigned, lessSigned, equalSigned;
+wire [3:0] signCheck;
 
 assign greaterSigned = (~a[31]) & b[31];
 assign lessSigned = a[31] & (~b[31]);
