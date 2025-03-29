@@ -219,20 +219,20 @@ VCD info: dumpfile alu_wave.vcd opened for output.
 ✅ PASS: A = 4ea0419d, B = 583125b0, Result = 1b162ecdbeb5ccf0
 ✅ PASS: A = 41103982, B = 24d2bf49, Result = 095bd8031d2c6412
 ✅ PASS: A = ecb91ad9, B = 1000b720, Result = 0ecc3b0379547a20
-❌ FAIL: A = 8e054c1c, B = 49b16f93, Expected = 28e1f2437466d814, Got = 28e1f24374e6d814
+✅ PASS: A = 8e054c1c, B = 49b16f93, Result = 28e1f2437466d814
 ✅ PASS: A = 71b461e3, B = 954b822a, Result = 424f86a20dce553e
 ✅ PASS: A = e471f8c8, B = aed72e5d, Result = 9c057c2f581350a8
-❌ FAIL: A = 1d3f9d3a, B = 4226a984, Expected = 078ed1585e345be8, Got = 078ed1585eb45be8
+✅ PASS: A = 1d3f9d3a, B = 4226a984, Result = 078ed1585e345be8
 ✅ PASS: A = 95a9a82b, B = 1c8d7f39, Result = 10b14736d0e2c693
-❌ FAIL: A = 897f1c12, B = a97f0052, Expected = 5b091fc2d9a4fdc4, Got = 5b091fc2d924fdc4
-❌ FAIL: A = 2c848959, B = e82b96d0, Expected = 285fb0f58e1cbe50, Got = 285fb0f58d9cbe50
+✅ PASS: A = 897f1c12, B = a97f0052, Result = 5b091fc2d9a4fdc4
+✅ PASS: A = 2c848959, B = e82b96d0, Result = 285fb0f58e1cbe50
 ✅ PASS: A = b759ea6e, B = 4bf52997, Result = 3666ee8521dae4e2
 ✅ PASS: A = 6d8b87db, B = 535277a6, Result = 23a786f069c6e502
 ✅ PASS: A = 5d85d3bb, B = 80797c00, Result = 2eef4b6b65f19400
 ✅ PASS: A = 87e44c0f, B = b4e8d669, Result = 60081e300dcfbc27
 ✅ PASS: A = 8653620c, B = 2ca81959, Result = 176e88df3f70422c
 ✅ PASS: A = 62fd49c5, B = 67d735cf, Result = 28272035b2876f4b
-❌ FAIL: A = 4839e590, B = a8e4d851, Expected = 2fa68f3ea8432290, Got = 2fa68f3ea8c32290
+✅ PASS: A = 4839e590, B = a8e4d851, Result = 2fa68f3ea8432290
 ✅ PASS: A = b4f9a469, B = 3b83cd77, Result = 2a12b5e35d6e81cf
 ✅ PASS: A = 2523654a, B = ec3758d8, Result = 2244a8de7b94e670
 ✅ PASS: A = 4ddd4d9b, B = e20e9ac4, Result = 44c1cfafd298a8ac
@@ -240,7 +240,7 @@ VCD info: dumpfile alu_wave.vcd opened for output.
 ✅ PASS: A = c378ee86, B = 984d5a30, Result = 744adddc78d5d520
 ✅ PASS: A = 3bed5377, B = 5ad6c7b5, Result = 1543b67b76278423
 ✅ PASS: A = 6a15f5d4, B = 03878707, Result = 01766b6a9a0884cc
-❌ FAIL: A = 3b0b9776, B = 74a1ade9, Expected = 1ae68b084c1d9866, Got = 1ae68b084c9d9866
+✅ PASS: A = 3b0b9776, B = 74a1ade9, Result = 1ae68b084c1d9866
 ✅ PASS: A = 45e28b8b, B = 00f25f01, Result = 00422a174111208b
 ✅ PASS: A = 6d808bdb, B = c0764280, Result = 5252fe969b466380
 ✅ PASS: A = 611d9fc2, B = e2ecdac5, Result = 5616015680af244a
@@ -255,35 +255,35 @@ VCD info: dumpfile alu_wave.vcd opened for output.
 ✅ PASS: A = f0eeaee1, B = bbbc5277, Result = b0af96a33b335c97
 ✅ PASS: A = 3715156e, B = 40aaf581, Result = 0dea0e2eaa2e126e
 ✅ PASS: A = 6a9fb9d5, B = 3437d568, Result = 15bfb2f26744b788
-❌ FAIL: A = 786271f0, B = d57800aa, Expected = 6462574209dfa960, Got = 64625742095fa960
+✅ PASS: A = 786271f0, B = d57800aa, Result = 6462574209dfa960
 ✅ PASS: A = 079fc30f, B = f8dc48f1, Result = 0769546e4526d91f
-❌ FAIL: A = be9bbc7d, B = 472e958e, Expected = 34ffe09ce88d4e56, Got = 34ffe09ce80d4e56
+✅ PASS: A = be9bbc7d, B = 472e958e, Result = 34ffe09ce88d4e56
 ✅ PASS: A = f161dce2, B = 1e664d3c, Result = 1ca9edb3806bbef8
 ✅ PASS: A = d4b5e6a9, B = 77ebb1ef, Result = 63a4650ba67030c7
-❌ FAIL: A = ade7d05b, B = d7a23caf, Expected = 927be5e77ce2c235, Got = 927be5e77d62c235
+✅ PASS: A = ade7d05b, B = d7a23caf, Result = 927be5e77ce2c235
 ✅ PASS: A = 25029b4a, B = 5cd20db9, Result = 0d6b4deddb78fa7a
-❌ FAIL: A = 098e2d13, B = 09c83513, Expected = 005d78a406ba4769, Got = 005d78a4063a4769
+✅ PASS: A = 098e2d13, B = 09c83513, Result = 005d78a406ba4769
 ✅ PASS: A = 32dc4165, B = 28c62751, Result = 0819c86201c513f5
-❌ FAIL: A = db983ab7, B = cc981099, Expected = af7fbf69724e875f, Got = af7fbf6971ce875f
+✅ PASS: A = db983ab7, B = cc981099, Result = af7fbf69724e875f
 ✅ PASS: A = 9d12083a, B = b8ea3a71, Result = 7174ac409fd6c59a
 ✅ PASS: A = 317c0762, B = f2356ae4, Result = 2ed1925198cf2748
 ✅ PASS: A = 1513dd2a, B = beda447d, Result = 0fb6b6b313362582
 ✅ PASS: A = 2cee5f59, B = 72c3a3e5, Result = 14247ccc3abbf59d
 ✅ PASS: A = 76de6bed, B = e4a800c9, Result = 6a2c1a733c2abd15
 ✅ PASS: A = a0aecc41, B = 57c1d1af, Result = 37150ecea03fb16f
-❌ FAIL: A = eda71cdb, B = e696e8cd, Expected = d6103bf56b4a935f, Got = d6103bf56bca935f
+✅ PASS: A = eda71cdb, B = e696e8cd, Result = d6103bf56b4a935f
 ✅ PASS: A = 38139f70, B = 8326d406, Result = 1cba8bf18b1e7ca0
 ✅ PASS: A = d14820a2, B = 5e983dbd, Result = 4d54f1478e36b19a
 ✅ PASS: A = b555de6a, B = 6e3d47dc, Result = 4e164dee31bc8918
 ✅ PASS: A = a86c5e50, B = bd86f47b, Result = 7cb0cb32a3d59070
 ✅ PASS: A = 929d5825, B = bc3f8478, Result = 6bcfed51b84f6558
-❌ FAIL: A = 7b7b89f6, B = ae23ce5c, Expected = 53ff3d32da0b8868, Got = 53ff3d32da8b8868
+✅ PASS: A = 7b7b89f6, B = ae23ce5c, Result = 53ff3d32da0b8868
 ✅ PASS: A = 11cc9b23, B = 3cb3ab79, Result = 04387258c2ceb48b
 ✅ PASS: A = 644605c8, B = ddd146bb, Result = 56e26bdcc502e918
 ✅ PASS: A = 870cee0e, B = b9879473, Result = 61dfde29cbd1084a
 ✅ PASS: A = 0671030c, B = e70f98ce, Result = 05d05e374a7393a8
 ✅ PASS: A = 6a1a61d4, B = acecdc59, Result = 47abe5602eae32b4
-❌ FAIL: A = 5ca26fb9, B = d9b8c0b3, Expected = 4ec88b2eb756de5b, Got = 4ec88b2eb6d6de5b
+✅ PASS: A = 5ca26fb9, B = d9b8c0b3, Result = 4ec88b2eb756de5b
 ✅ PASS: A = 7a4fbff4, B = baf4e275, Result = 5952f1ac8a782284
 ✅ PASS: A = 066cf10c, B = 9cfc7a39, Result = 03f0b931f0f163ac
 ✅ PASS: A = 01729302, B = 8aecbe15, Result = 00c919f1c1598b2a
@@ -291,7 +291,7 @@ VCD info: dumpfile alu_wave.vcd opened for output.
 ✅ PASS: A = 013f2902, B = 5c7951b8, Result = 007349fcfb511b70
 ✅ PASS: A = 847fb208, B = 46e7538d, Result = 24b2a5263645a668
 ✅ PASS: A = d7b48eaf, B = 747331e8, Result = 621ee0d06f8dcd98
-❌ FAIL: A = 48590990, B = 7af6abf5, Expected = 22c024b686f956d0, Got = 22c024b6877956d0
+✅ PASS: A = 48590990, B = 7af6abf5, Result = 22c024b686f956d0
 ✅ PASS: A = a620904c, B = 3d82bd7b, Result = 27ea99e13ec57084
 ✅ PASS: A = a005a640, B = 12a90325, Result = 0baa0b627203c740
 ✅ PASS: A = 86ebb60d, B = b87c1070, Result = 613acdaf48cc75b0
@@ -299,11 +299,11 @@ VCD info: dumpfile alu_wave.vcd opened for output.
 ✅ PASS: A = 5e2551bc, B = 987b0830, Result = 38136778b6e13340
 ✅ PASS: A = 60272dc0, B = 28766950, Result = 0f3298c334820c00
 ✅ PASS: A = d0cf6aa1, B = 26bf3f4d, Result = 1f9ac8364dbfb16d
-❌ FAIL: A = faf32ef5, B = 7a87aff5, Expected = 781ce71aed086b79, Got = 781ce71aed886b79
-❌ FAIL: A = aeeacc5d, B = ca481294, Expected = 8a3683fc7e44afc4, Got = 8a3683fc7dc4afc4
+✅ PASS: A = faf32ef5, B = 7a87aff5, Result = 781ce71aed086b79
+✅ PASS: A = aeeacc5d, B = ca481294, Result = 8a3683fc7e44afc4
 ✅ PASS: A = b558a66a, B = 5e6065bc, Result = 42dad66a7a8207d8
-❌ FAIL: A = dc4308b8, B = cf309c9e, Expected = b244075f352f8190, Got = b244075f35af8190
-❌ FAIL: A = fd7906fa, B = 23400b46, Expected = 22e6f55f6ee4a65c, Got = 22e6f55f6f64a65c
+✅ PASS: A = dc4308b8, B = cf309c9e, Result = b244075f352f8190
+✅ PASS: A = fd7906fa, B = 23400b46, Result = 22e6f55f6ee4a65c
 ✅ PASS: A = 83fa6407, B = c9cbbc93, Result = 6808a14e7ac99405
 
 === Testing AND (A & B) ===
@@ -1619,4 +1619,90 @@ Result = 0_11101110_011 1001 1011 0010 0110 1101
 A = 1_11010101_10010000001001011010101
 B = 0_01110110_11100100110110101110110
 Result = 1_11010101_100 1000 0001 0010 1101 0101
-../dv/alu_tb.sv:239: $finish called at 5100 (1s)
+
+=== Testing SPECIAL FLOATING POINT CASES ===
+
+Test Case: Zero + Zero
+A = 0_00000000_00000000000000000000000
+B = 0_00000000_00000000000000000000000
+Expected = 0_00000000_000 0000 0000 0000 0000 0000
+ALU Out  = 0_00000001_000 0000 0000 0000 0000 0000
+❌ FAIL
+
+Test Case: Zero - Zero
+A = 0_00000000_00000000000000000000000
+B = 0_00000000_00000000000000000000000
+Expected = 0_00000000_000 0000 0000 0000 0000 0000
+ALU Out  = 0_00000001_000 0000 0000 0000 0000 0000
+❌ FAIL
+
+Test Case: Zero + Normal (1.0)
+A = 0_00000000_00000000000000000000000
+B = 0_01111111_00000000000000000000000
+Expected = 0_01111111_000 0000 0000 0000 0000 0000
+ALU Out  = 0_01111111_000 0000 0000 0000 0000 0000
+✅ PASS
+
+Test Case: Zero - Normal (1.0)
+A = 0_00000000_00000000000000000000000
+B = 0_01111111_00000000000000000000000
+Expected = 1_01111111_000 0000 0000 0000 0000 0000
+ALU Out  = 0_01111111_000 0000 0000 0000 0000 0000
+❌ FAIL
+
+Test Case: Subnormal + Subnormal
+A = 0_00000000_00000000000000000000001
+B = 0_00000000_00000000000000000000001
+Expected = 0_00000000_000 0000 0000 0000 0000 0010
+ALU Out  = 0_00000001_000 0000 0000 0000 0000 0001
+❌ FAIL
+
+Test Case: Subnormal + Normal
+A = 0_00000000_00000000000000000000001
+B = 0_01111111_00000000000000000000000
+Expected = 0_01111111_000 0000 0000 0000 0000 0000
+ALU Out  = 0_01111111_000 0000 0000 0000 0000 0000
+✅ PASS
+
+Test Case: Infinity + Infinity
+A = 0_11111111_00000000000000000000000
+B = 0_11111111_00000000000000000000000
+Expected = 0_11111111_000 0000 0000 0000 0000 0000
+ALU Out  = 0_00000000_000 0000 0000 0000 0000 0000
+❌ FAIL
+
+Test Case: Infinity - Infinity
+A = 0_11111111_00000000000000000000000
+B = 1_11111111_00000000000000000000000
+Expected = 0_11111111_100 0000 0000 0000 0000 0000
+ALU Out  = 0_11100001_000 0000 0000 0000 0000 0000
+❌ FAIL
+
+Test Case: Infinity + Normal
+A = 0_11111111_00000000000000000000000
+B = 0_01111111_00000000000000000000000
+Expected = 0_11111111_000 0000 0000 0000 0000 0000
+ALU Out  = 0_11111111_000 0000 0000 0000 0000 0000
+✅ PASS
+
+Test Case: NaN + Any
+A = 0_11111111_10000000000000000000000
+B = 0_01111111_00000000000000000000000
+Expected = 0_11111111_100 0000 0000 0000 0000 0000
+ALU Out  = 0_11111111_000 0000 0000 0000 0000 0000
+❌ FAIL
+
+Test Case: Overflow
+A = 0_11111110_11111111111111111111111
+B = 0_01111111_00000000000000000000000
+Expected = 0_11111111_000 0000 0000 0000 0000 0000
+ALU Out  = 0_11111110_111 1111 1111 1111 1111 1111
+❌ FAIL
+
+Test Case: Underflow
+A = 0_00000000_00000000000000000000001
+B = 0_00000000_00000000000000000000001
+Expected = 0_00000000_000 0000 0000 0000 0000 0001
+ALU Out  = 0_00000001_000 0000 0000 0000 0000 0001
+❌ FAIL
+../dv/alu_tb.sv:287: $finish called at 5160 (1s)
