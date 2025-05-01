@@ -1,3 +1,4 @@
 CORDIC Block Diagram
 
-![CORDIC](https://github.com/user-attachments/assets/38a2a8cb-2199-4d88-be6e-fc5b89893fbf)
+![CORDIC](https://github.com/user-attachments/assets/9fc60995-fcec-4ddc-9009-21de4635d9cf)
+
