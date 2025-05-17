@@ -88,7 +88,7 @@ logic [31:0] pre1_fixed_angle;
 logic [31:0] fixed_angle;
 logic [31:0] Z_out, pre_Zreg, Zreg;
 
-fpu fpu3 (.a(32'b0_10000001_10010010000111111011011), .b(angle), .control(1'b1), .result(comp_angle), .mul(1'b0));
+fpu fpu3 (.a(32'b0_10000001_10010010000111111011011), .b(angle), .control(1'b0), .result(comp_angle), .mul(1'b0));
 
 always @(*) begin
 	case (angle[31])
