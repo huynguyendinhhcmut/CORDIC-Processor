@@ -56,7 +56,7 @@ fullAdder8b fa1 (.a(Xreg[30:23]), .b({4'b0, i}), .cin(1'b1), .sum(div2_Xreg));
 
 assign X_div2 = {Xreg[31], div2_Xreg, Xreg[22:0]};
 
-fpu fpu1 (.a(Xreg), .b(Y_div2), .control(~d), .result(X_out));
+fpu fpu1 (.a(Xreg), .b(Y_div2), .control(~d), .result(X_out), .mul(1'b0));
 
 // Y calculate
 always @(*) begin
@@ -78,7 +78,7 @@ fullAdder8b fa2 (.a(Yreg[30:23]), .b({4'b0, i}), .cin(1'b1), .sum(div2_Yreg));
 
 assign Y_div2 = {Yreg[31], div2_Yreg, Yreg[22:0]};
 
-fpu fpu2 (.a(Yreg), .b(X_div2), .control(d), .result(Y_out));
+fpu fpu2 (.a(Yreg), .b(X_div2), .control(d), .result(Y_out), .mul(1'b0));
 
 // angle adjust
 logic [31:0] comp_angle, pre_fixed_angle;
@@ -88,7 +88,7 @@ logic [31:0] pre1_fixed_angle;
 logic [31:0] fixed_angle;
 logic [31:0] Z_out, pre_Zreg, Zreg;
 
-fpu fpu3 (.a(32'b0_10000001_10010010000111111011011), .b(angle), .control(1'b1), .result(comp_angle));
+fpu fpu3 (.a(32'b0_10000001_10010010000111111011011), .b(angle), .control(1'b1), .result(comp_angle), .mul(1'b0));
 
 always @(*) begin
 	case (angle[31])
@@ -130,7 +130,7 @@ always @(*) begin
 	endcase
 end
 
-fpu fpu4 (.a(a), .b(b), .control(1'b1), .result(pre1_fixed_angle));
+fpu fpu4 (.a(a), .b(b), .control(1'b1), .result(pre1_fixed_angle), .mul(1'b0));
 
 always @(*) begin
 	case (select)
@@ -167,7 +167,7 @@ always @(posedge clk or negedge rst_n) begin
 		Zreg <= pre_Zreg;
 end
 
-fpu fpu7 (.a(Zreg), .b(arctan[i]), .control(~d), .result(Z_out));
+fpu fpu7 (.a(Zreg), .b(arctan[i]), .control(~d), .result(Z_out), .mul(1'b0));
 
 fullAdder4b fa3 (.a(i), .b(4'b0001), .cin(1'b0), .sum(pre_i1));
 
@@ -190,20 +190,20 @@ logic [31:0] pre_sin, pre_cos;
 always @(*) begin
 	case (select)
 		4'b0001: begin
-			pre_sin = Xreg;
-			pre_cos = Yreg;
+			pre_cos = Xreg;
+			pre_sin = Yreg;
 		end
 		4'b0010: begin
-			pre_sin = {1'b1, Xreg[30:0]};
-			pre_cos = Yreg;
+			pre_cos = {1'b1, Xreg[30:0]};
+			pre_sin = Yreg;
 		end
 		4'b0100: begin
-			pre_sin = {1'b1, Xreg[30:0]};
-			pre_cos = {1'b1, Yreg[30:0]};
+			pre_cos = {1'b1, Xreg[30:0]};
+			pre_sin = {1'b1, Yreg[30:0]};
 		end
 		4'b1000: begin
-			pre_sin = Xreg;
-			pre_cos = {1'b1, Yreg[30:0]};
+			pre_cos = Xreg;
+			pre_sin = {1'b1, Yreg[30:0]};
 		end
 		default: begin
 			pre_sin = 32'b0;
@@ -212,6 +212,11 @@ always @(*) begin
 	endcase
 end
 
+logic [31:0] pre_sin1, pre_cos1;
+
+fpu fpumul1 (.a(pre_sin), .b(32'b00111111000110110111010011101110), .mul(1'b1), .result(pre_sin1), .control(1'b0));
+fpu fpumul2 (.a(pre_cos), .b(32'b00111111000110110111010011101110), .mul(1'b1), .result(pre_cos1), .control(1'b0));
+
 always @(*) begin
 	case (&i)
 		1'b0: begin 
@@ -219,8 +224,8 @@ always @(*) begin
 			cos = 32'b0;
 		end
 		1'b1: begin
-			sin = pre_sin;
-			cos = pre_cos;
+			sin = pre_sin1;
+			cos = pre_cos1;
 		end
 	endcase
 end
