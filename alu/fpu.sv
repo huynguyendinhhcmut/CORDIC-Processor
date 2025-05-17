@@ -340,6 +340,24 @@ fullAdder8b fa8 (.a(largerExponent), .b({3'b000, normalizedAmount}), .cin(cin), 
 
 endmodule	
 
+//========== Encoder 64 to 6 ==========
+module encoder64to6 (
+	input logic [63:0] a,
+    	output logic [5:0] b
+);
+
+logic [4:0] enc_low_out, enc_high_out;
+logic sel_high;
+
+assign sel_high = |a[63:32]; 
+
+encoder32to5 encoder_lo (.a(a[31:0]), .b(enc_low_out));
+encoder32to5 encoder_hi (.a(a[63:32]), .b(enc_high_out));
+
+assign b = sel_high ? {1'b1, enc_high_out} : {1'b0, enc_low_out};
+
+endmodule
+
 //========== Encoder 32 to 5 ==========
 module encoder32to5 (
 	input logic [31:0] a,
