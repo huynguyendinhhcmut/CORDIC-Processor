@@ -17,7 +17,7 @@ shift shift1 (.data_in(a), .shift_amount(b[4:0]), .rightleft(ALUControl[0]), .ar
 
 comparator32b compare (.a(a), .b(b), .sign(ALUControl[2]), .Gr(gr), .Lt(lt), .Eq(eq));
 
-fpu fpu1 (.A(a), .B(b), .control(ALUControl[4] & ALUControl[0]), .result(fpu));
+fpu fpu1 (.a(a), .b(b), .control(ALUControl[4] & ALUControl[0]), .result(fpu));
 
 always @(*) begin
 	case (ALUControl)
@@ -93,7 +93,7 @@ always @(*) begin
 							1'b1: result = {32'b0, 32'b1};	// check if not equal
 						endcase
 					end
-		//5'b01111: result = 0;
+		//5'b01111: result = a / b;
 		5'b10000: begin
 						result [63:32] = 32'b0;
 						result [31:0] = fpu;						// add floating point		

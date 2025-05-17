@@ -1,5 +1,187 @@
 module fpu (
 	input logic [31:0] a, b,
+	input logic control, mul,
+	output logic [31:0] result
+);
+
+logic [31:0] pre_result1, pre_result2;
+
+fpu_add_sub fpuaddsub (.a(a), .b(b), .control(control), .result(pre_result1));
+fpu_mul fpumul (.a(a), .b(b), .result(pre_result2));
+
+always @(*) begin
+	case (mul)
+		1'b0: result = pre_result1;
+		1'b1: result = pre_result2;
+	endcase
+end
+
+endmodule
+
+//========== FPU multiplication ==========
+module fpu_mul (
+	input logic [31:0] a, b,
+	output logic [31:0] result
+);
+
+logic [7:0] pre_exp1, pre_exp2;
+
+fullAdder8b faexp1 (.a(a[30:23]), .b(b[30:23]), .cin(1'b0), .sum(pre_exp1));
+fullAdder8b faexp2 (.a(pre_exp1), .b(8'b0111_1111), .cin(1'b1), .sum(pre_exp2));
+
+logic [4:0] positiona, positionb;
+
+encoder32to5 encoder2 (.a({8'b0, a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8], a[9], a[10], a[11], a[12], a[13], a[14], a[15], a[16], a[17], a[18], a[19], a[20], a[21], a[22], 1'b1}), .b(positiona));
+encoder32to5 encoder3 (.a({8'b0, b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18], b[19], b[20], b[21], b[22], 1'b1}), .b(positionb));
+
+
+logic [6:0] fixed;
+logic [5:0] position, position1, totali;
+logic [4:0] ai, bi;
+logic [31:0] mana, manb;
+logic [63:0] pre_resultman1;
+logic [31:0] pre_resultman2;
+
+always @(*) begin
+	case (positiona)
+		5'b00000: mana = {31'b0, 1'b1};
+		5'b00001: mana = {30'b0, 1'b1, a[22]};
+		5'b00010: mana = {29'b0, 1'b1, a[22:21]};
+		5'b00011: mana = {28'b0, 1'b1, a[22:20]};
+		5'b00100: mana = {27'b0, 1'b1, a[22:19]};
+		5'b00101: mana = {26'b0, 1'b1, a[22:18]};
+		5'b00110: mana = {25'b0, 1'b1, a[22:17]};
+		5'b00111: mana = {24'b0, 1'b1, a[22:16]};
+		5'b01000: mana = {23'b0, 1'b1, a[22:15]};
+		5'b01001: mana = {22'b0, 1'b1, a[22:14]};
+		5'b01010: mana = {21'b0, 1'b1, a[22:13]};
+		5'b01011: mana = {20'b0, 1'b1, a[22:12]};
+		5'b01100: mana = {19'b0, 1'b1, a[22:11]};
+		5'b01101: mana = {18'b0, 1'b1, a[22:10]};
+		5'b01110: mana = {17'b0, 1'b1, a[22:9]};
+		5'b01111: mana = {16'b0, 1'b1, a[22:8]};
+		5'b10000: mana = {15'b0, 1'b1, a[22:7]};
+		5'b10001: mana = {14'b0, 1'b1, a[22:6]};
+		5'b10010: mana = {13'b0, 1'b1, a[22:5]};
+		5'b10011: mana = {12'b0, 1'b1, a[22:4]};
+		5'b10100: mana = {11'b0, 1'b1, a[22:3]};
+		5'b10101: mana = {10'b0, 1'b1, a[22:2]};
+		5'b10110: mana = {9'b0, 1'b1, a[22:1]};
+		5'b10111: mana = {8'b0, 1'b1, a[22:0]};
+		default: mana = 32'b0;
+	endcase
+end
+
+always @(*) begin
+	case (positionb)
+		5'b00000: manb = {31'b0, 1'b1};
+		5'b00001: manb = {30'b0, 1'b1, b[22]};
+		5'b00010: manb = {29'b0, 1'b1, b[22:21]};
+		5'b00011: manb = {28'b0, 1'b1, b[22:20]};
+		5'b00100: manb = {27'b0, 1'b1, b[22:19]};
+		5'b00101: manb = {26'b0, 1'b1, b[22:18]};
+		5'b00110: manb = {25'b0, 1'b1, b[22:17]};
+		5'b00111: manb = {24'b0, 1'b1, b[22:16]};
+		5'b01000: manb = {23'b0, 1'b1, b[22:15]};
+		5'b01001: manb = {22'b0, 1'b1, b[22:14]};
+		5'b01010: manb = {21'b0, 1'b1, b[22:13]};
+		5'b01011: manb = {20'b0, 1'b1, b[22:12]};
+		5'b01100: manb = {19'b0, 1'b1, b[22:11]};
+		5'b01101: manb = {18'b0, 1'b1, b[22:10]};
+		5'b01110: manb = {17'b0, 1'b1, b[22:9]};
+		5'b01111: manb = {16'b0, 1'b1, b[22:8]};
+		5'b10000: manb = {15'b0, 1'b1, b[22:7]};
+		5'b10001: manb = {14'b0, 1'b1, b[22:6]};
+		5'b10010: manb = {13'b0, 1'b1, b[22:5]};
+		5'b10011: manb = {12'b0, 1'b1, b[22:4]};
+		5'b10100: manb = {11'b0, 1'b1, b[22:3]};
+		5'b10101: manb = {10'b0, 1'b1, b[22:2]};
+		5'b10110: manb = {9'b0, 1'b1, b[22:1]};
+		5'b10111: manb = {8'b0, 1'b1, b[22:0]};
+		default: manb= 32'b0;
+	endcase
+end
+  
+multiply32x32 multiply (.a(mana), .b(manb), .mul(pre_resultman1));
+  fullAdder5b fa5b1 (.a(positiona), .b(positionb), .cin(1'b0), .sum(totali[4:0]), .cout(totali[5]));
+
+encoder64to6 encoder646 (.a(pre_resultman1), .b(position));
+
+always @(*) begin
+	case (position) //32
+		6'b00_0000: pre_resultman2 = {pre_resultman1[0], 31'b0};
+		6'b00_0001: pre_resultman2 = {pre_resultman1[1:0], 30'b0};
+		6'b00_0010: pre_resultman2 = {pre_resultman1[2:0], 29'b0};
+		6'b00_0011: pre_resultman2 = {pre_resultman1[3:0], 28'b0};
+		6'b00_0100: pre_resultman2 = {pre_resultman1[4:0], 27'b0};
+		6'b00_0101: pre_resultman2 = {pre_resultman1[5:0], 26'b0};
+		6'b00_0110: pre_resultman2 = {pre_resultman1[6:0], 25'b0};
+		6'b00_0111: pre_resultman2 = {pre_resultman1[7:0], 24'b0};
+		6'b00_1000: pre_resultman2 = {pre_resultman1[8:0], 23'b0};
+		6'b00_1001: pre_resultman2 = {pre_resultman1[9:0], 22'b0};
+		6'b00_1010: pre_resultman2 = {pre_resultman1[10:0], 21'b0};
+		6'b00_1011: pre_resultman2 = {pre_resultman1[11:0], 20'b0};
+		6'b00_1100: pre_resultman2 = {pre_resultman1[12:0], 19'b0};
+		6'b00_1101: pre_resultman2 = {pre_resultman1[13:0], 18'b0};
+		6'b00_1110: pre_resultman2 = {pre_resultman1[14:0], 17'b0};
+		6'b00_1111: pre_resultman2 = {pre_resultman1[15:0], 16'b0};
+		6'b01_0000: pre_resultman2 = {pre_resultman1[16:0], 15'b0};
+		6'b01_0001: pre_resultman2 = {pre_resultman1[17:0], 14'b0};
+		6'b01_0010: pre_resultman2 = {pre_resultman1[18:0], 13'b0};
+		6'b01_0011: pre_resultman2 = {pre_resultman1[19:0], 12'b0};
+		6'b01_0100: pre_resultman2 = {pre_resultman1[20:0], 11'b0};
+		6'b01_0101: pre_resultman2 = {pre_resultman1[21:0], 10'b0};
+		6'b01_0110: pre_resultman2 = {pre_resultman1[22:0], 9'b0};
+		6'b01_0111: pre_resultman2 = {pre_resultman1[23:0], 8'b0};
+		6'b01_1000: pre_resultman2 = {pre_resultman1[24:0], 7'b0};
+		6'b01_1001: pre_resultman2 = {pre_resultman1[25:0], 6'b0};
+		6'b01_1010: pre_resultman2 = {pre_resultman1[26:0], 5'b0};
+		6'b01_1011: pre_resultman2 = {pre_resultman1[27:0], 4'b0};
+		6'b01_1100: pre_resultman2 = {pre_resultman1[28:0], 3'b0};
+		6'b01_1101: pre_resultman2 = {pre_resultman1[29:0], 2'b0};
+		6'b01_1110: pre_resultman2 = {pre_resultman1[30:0], 1'b0};
+		6'b01_1111: pre_resultman2 = pre_resultman1[31:0];
+		6'b10_0000: pre_resultman2 = pre_resultman1[32:1];
+		6'b10_0001: pre_resultman2 = pre_resultman1[33:2];
+		6'b10_0010: pre_resultman2 = pre_resultman1[34:3];
+		6'b10_0011: pre_resultman2 = pre_resultman1[35:4];
+		6'b10_0100: pre_resultman2 = pre_resultman1[36:5];
+		6'b10_0101: pre_resultman2 = pre_resultman1[37:6];
+		6'b10_0110: pre_resultman2 = pre_resultman1[38:7];
+		6'b10_0111: pre_resultman2 = pre_resultman1[39:8];
+		6'b10_1000: pre_resultman2 = pre_resultman1[40:9];
+		6'b10_1001: pre_resultman2 = pre_resultman1[41:10];
+		6'b10_1010: pre_resultman2 = pre_resultman1[42:11];
+		6'b10_1011: pre_resultman2 = pre_resultman1[43:12];
+		6'b10_1100: pre_resultman2 = pre_resultman1[44:13];
+		6'b10_1101: pre_resultman2 = pre_resultman1[45:14];
+		6'b10_1110: pre_resultman2 = pre_resultman1[46:15];
+		6'b10_1111: pre_resultman2 = pre_resultman1[47:16];
+		6'b11_0000: pre_resultman2 = pre_resultman1[48:17];
+		default: pre_resultman2 = 32'b0;
+	endcase
+end
+
+fullAdder6b fa6b1 (.a(position), .b(6'b00_0001), .cin(1'b0), .sum(position1[5:0]));
+fullAdder6b fa6b2 (.a(position1), .b(totali), .cin(1'b1), .sum(fixed[5:0]), .cout(fixed[6]));
+
+logic rage;
+always @(*) begin
+	case (fixed[6:0])
+	    7'b000_0010: rage = 1;
+		default: rage = 0;
+	endcase
+end
+
+fullAdder8b fa8bexp (.a(pre_exp2), .b({7'b0, rage}), .cin(1'b0), .sum(result[30:23]));
+assign result[22:0] = pre_resultman2[30:8];
+assign result[31] = a[31] ^ b[31];
+
+endmodule
+
+//========== FPU add/sub ==========
+module fpu_add_sub (
+	input logic [31:0] a, b,
 	input logic control,
 	output logic [31:0] result
 );
@@ -163,7 +345,7 @@ module normalized (
 logic cin;
 logic [4:0] position, normalizedAmount;
 
-encoder32to5 encoder (.a(sumOperand), .b(position));
+encoder32to5 encoder1 (.a(sumOperand), .b(position));
 
 always @(*) begin
 	case (position)
@@ -525,85 +707,3 @@ end
 
 endmodule
 
-
-//========== Full Adder ==========
-module fullAdder9b (
-        input logic [8:0] a, b,
-	input logic cin,
-        output logic [8:0] sum,
-        output logic cout
-);
-
-logic [8:0] carry;
-
-fullAdder fa9 (.sum(sum[0]),   .a(a[0]),  .b(b[0]^cin),  .cin(cin),       .cout(carry[0]));
-fullAdder fa10 (.sum(sum[1]),   .a(a[1]),  .b(b[1]^cin),  .cin(carry[0]),  .cout(carry[1]));
-fullAdder fa11 (.sum(sum[2]),   .a(a[2]),  .b(b[2]^cin),  .cin(carry[1]),  .cout(carry[2]));
-fullAdder fa12 (.sum(sum[3]),   .a(a[3]),  .b(b[3]^cin),  .cin(carry[2]),  .cout(carry[3]));
-fullAdder fa13 (.sum(sum[4]),   .a(a[4]),  .b(b[4]^cin),  .cin(carry[3]),  .cout(carry[4]));
-fullAdder fa14 (.sum(sum[5]),   .a(a[5]),  .b(b[5]^cin),  .cin(carry[4]),  .cout(carry[5]));
-fullAdder fa15 (.sum(sum[6]),   .a(a[6]),  .b(b[6]^cin),  .cin(carry[5]),  .cout(carry[6]));
-fullAdder fa16 (.sum(sum[7]),   .a(a[7]),  .b(b[7]^cin),  .cin(carry[6]),  .cout(carry[7]));
-fullAdder fa17 (.sum(sum[8]),   .a(a[8]),  .b(b[8]^cin),  .cin(carry[7]),  .cout(carry[8]));
-
-xor (cout, carry[8], cin);
-
-endmodule
-
-module fullAdder8b (
-        input logic [7:0] a, b,
-	input logic cin,
-        output logic [7:0] sum,
-        output logic cout
-);
-
-logic [7:0] carry;
-
-fullAdder fa1 (.sum(sum[0]),   .a(a[0]),  .b(b[0]^cin),  .cin(cin),       .cout(carry[0]));
-fullAdder fa2 (.sum(sum[1]),   .a(a[1]),  .b(b[1]^cin),  .cin(carry[0]),  .cout(carry[1]));
-fullAdder fa3 (.sum(sum[2]),   .a(a[2]),  .b(b[2]^cin),  .cin(carry[1]),  .cout(carry[2]));
-fullAdder fa4 (.sum(sum[3]),   .a(a[3]),  .b(b[3]^cin),  .cin(carry[2]),  .cout(carry[3]));
-fullAdder fa5 (.sum(sum[4]),   .a(a[4]),  .b(b[4]^cin),  .cin(carry[3]),  .cout(carry[4]));
-fullAdder fa6 (.sum(sum[5]),   .a(a[5]),  .b(b[5]^cin),  .cin(carry[4]),  .cout(carry[5]));
-fullAdder fa7 (.sum(sum[6]),   .a(a[6]),  .b(b[6]^cin),  .cin(carry[5]),  .cout(carry[6]));
-fullAdder fa8 (.sum(sum[7]),   .a(a[7]),  .b(b[7]^cin),  .cin(carry[6]),  .cout(carry[7]));
-
-xor (cout, carry[7], cin);
-
-endmodule
-
-module fullAdder23b (
-  		input logic [22:0] a, b,
-        input logic cin,
-  		output logic [22:0] sum,
-        output logic cout
-);
-
-logic [22:0] carry;
-
-fullAdder fa1 (.sum(sum[0]),   .a(a[0]),  .b(b[0]^cin),  .cin(cin),       .cout(carry[0]));
-fullAdder fa2 (.sum(sum[1]),   .a(a[1]),  .b(b[1]^cin),  .cin(carry[0]),  .cout(carry[1]));
-fullAdder fa3 (.sum(sum[2]),   .a(a[2]),  .b(b[2]^cin),  .cin(carry[1]),  .cout(carry[2]));
-fullAdder fa4 (.sum(sum[3]),   .a(a[3]),  .b(b[3]^cin),  .cin(carry[2]),  .cout(carry[3]));
-fullAdder fa5 (.sum(sum[4]),   .a(a[4]),  .b(b[4]^cin),  .cin(carry[3]),  .cout(carry[4]));
-fullAdder fa6 (.sum(sum[5]),   .a(a[5]),  .b(b[5]^cin),  .cin(carry[4]),  .cout(carry[5]));
-fullAdder fa7 (.sum(sum[6]),   .a(a[6]),  .b(b[6]^cin),  .cin(carry[5]),  .cout(carry[6]));
-fullAdder fa8 (.sum(sum[7]),   .a(a[7]),  .b(b[7]^cin),  .cin(carry[6]),  .cout(carry[7]));
-fullAdder fa9 (.sum(sum[8]),   .a(a[8]),  .b(b[8]^cin),  .cin(carry[7]),  .cout(carry[8]));
-fullAdder fa10 (.sum(sum[9]),  .a(a[9]),  .b(b[9]^cin),  .cin(carry[8]),  .cout(carry[9]));
-fullAdder fa11 (.sum(sum[10]), .a(a[10]), .b(b[10]^cin), .cin(carry[9]),  .cout(carry[10]));
-fullAdder fa12 (.sum(sum[11]), .a(a[11]), .b(b[11]^cin), .cin(carry[10]), .cout(carry[11]));
-fullAdder fa13 (.sum(sum[12]), .a(a[12]), .b(b[12]^cin), .cin(carry[11]), .cout(carry[12]));
-fullAdder fa14 (.sum(sum[13]), .a(a[13]), .b(b[13]^cin), .cin(carry[12]), .cout(carry[13]));
-fullAdder fa15 (.sum(sum[14]), .a(a[14]), .b(b[14]^cin), .cin(carry[13]), .cout(carry[14]));
-fullAdder fa16 (.sum(sum[15]), .a(a[15]), .b(b[15]^cin), .cin(carry[14]), .cout(carry[15]));
-fullAdder fa17 (.sum(sum[16]), .a(a[16]), .b(b[16]^cin), .cin(carry[15]), .cout(carry[16]));
-fullAdder fa18 (.sum(sum[17]), .a(a[17]), .b(b[17]^cin), .cin(carry[16]), .cout(carry[17]));
-fullAdder fa19 (.sum(sum[18]), .a(a[18]), .b(b[18]^cin), .cin(carry[17]), .cout(carry[18]));
-fullAdder fa20 (.sum(sum[19]), .a(a[19]), .b(b[19]^cin), .cin(carry[18]), .cout(carry[19]));
-fullAdder fa21 (.sum(sum[20]), .a(a[20]), .b(b[20]^cin), .cin(carry[19]), .cout(carry[20]));
-fullAdder fa22 (.sum(sum[21]), .a(a[21]), .b(b[21]^cin), .cin(carry[20]), .cout(carry[21]));
-fullAdder fa23 (.sum(sum[22]), .a(a[22]), .b(b[22]^cin), .cin(carry[21]), .cout(carry[22]));
-
-xor (cout, carry[22], cin);
-endmodule
