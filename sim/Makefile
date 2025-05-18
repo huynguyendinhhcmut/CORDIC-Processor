@@ -36,7 +36,7 @@ run: build
 	$(VVP) $(OUTPUT) | tee $(TEXT_OUTPUT)
 
 # Wave target
-wave: $(VCD_FILE)
+wave: 
 	$(GTKWAVE) $(VCD_FILE)
 
 # Clean up
