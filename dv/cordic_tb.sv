@@ -16,7 +16,7 @@ module cordic_tb;
   );
 
   initial begin
-    $dumpfile("cordic.vcd");  // for GTKWave
+    $dumpfile("cordic_wave.vcd"); 
     $dumpvars(0, cordic_tb);
     clk = 0;
     forever #1 clk = ~clk;
@@ -62,9 +62,13 @@ module cordic_tb;
       	test_angles[20] = 32'h40c90fdb; // 360
 
       for (i = 0; i < 21; i = i + 1) begin
-        angle = test_angles[i];
+        start = 0;
+        #4;
+	angle = test_angles[i];
+	#2;
         start = 1;
         #2 start = 0;
+
         repeat (17) @(posedge clk);
 
         $display("\n==== TEST CASE %0d ====", i);
@@ -72,10 +76,9 @@ module cordic_tb;
         $display("Sin: %b", sin);
         $display("Cos: %b", cos);
 	$display("Time: %0t", $time);
+
       end
     end
   endtask
 
 endmodule
-
-
