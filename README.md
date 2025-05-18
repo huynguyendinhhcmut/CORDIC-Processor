@@ -7,6 +7,7 @@ Waveform:
 ![image](https://github.com/user-attachments/assets/206a453a-a008-45b7-8278-cc5c98f5e297)
 
 Test cases:
+
 ==== TEST CASE 0 ====
 Angle: 00111110011010000101011010010110  // 13° = 0.2268928028 rad
 Sin: 00111110011001100101010011110101    // 0.22493346 ≈ 0.2249510543
