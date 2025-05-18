@@ -1,4 +1,4 @@
-![CORDIC](https://github.com/user-attachments/assets/256e9a1d-07a4-4dcb-a004-4ad8c00077e8)CORDIC Block Diagram
+CORDIC Block Diagram
 
 ![CORDIC](https://github.com/user-attachments/assets/bc674ee4-bf8f-4e39-9f3e-87fb9b07c1b2)
 
