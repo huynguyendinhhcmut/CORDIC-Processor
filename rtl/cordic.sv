@@ -2,6 +2,7 @@ module cordic (
 	input logic clk, rst_n,
 	input logic [31:0] angle, 
 	input logic start,
+	output logic finish,
 	output logic [31:0] sin, cos
 );
 
@@ -212,22 +213,37 @@ always @(*) begin
 	endcase
 end
 
-logic [31:0] pre_sin1, pre_cos1;
+logic pre_finish;
+logic [31:0] pre_sin2, pre_cos2, pre_sin1, pre_cos1;
 
 fpu fpumul1 (.a(pre_sin), .b(32'b00111111000110110111010011101110), .mul(1'b1), .result(pre_sin1), .control(1'b0));
 fpu fpumul2 (.a(pre_cos), .b(32'b00111111000110110111010011101110), .mul(1'b1), .result(pre_cos1), .control(1'b0));
 
 always @(*) begin
 	case (&i)
-		1'b0: begin 
-			sin = sin;
-			cos = cos;
+		1'b0: begin
+			pre_finish = 0;
+			pre_sin2 = sin;
+			pre_cos2 = cos;
 		end
 		1'b1: begin
-			sin = pre_sin1;
-			cos = pre_cos1;
+			pre_finish = 1;
+			pre_sin2 = pre_sin1;
+			pre_cos2 = pre_cos1;
 		end
 	endcase
+end
+
+always @(posedge clk or negedge rst_n) begin
+	if (~rst_n) begin
+		finish <= 0;
+		sin <= 32'b0;
+		cos <= 32'b0;
+	end else begin
+		finish = pre_finish;
+		sin <= pre_sin2;
+		cos <= pre_cos2;
+	end
 end
 
 endmodule

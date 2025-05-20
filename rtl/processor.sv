@@ -9,7 +9,7 @@ logic [31:0] pre_R0, pre_R1, pre_R2, pre_R3, pre_R4, pre_R5, pre_R6, pre_R7, pre
 logic [31:0] R0, R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12, R13, R14, R15, R16, R17, R18, R19, R20, R21, R22, R23, R24, R25, R26, R27, R28, R29, R30, R31, A, B, G, Sin, Cos, BUS;
 logic [31:0] pre_IR, IR;
 logic [3:0] ALUControl;
-logic IRin, Gout, DINout, Sinout, Cosout, incr_pc, Ain, Bin, Gin, Sinin, Cosin, ADDRin, DOUTin, W_D, start;
+logic IRin, Gout, DINout, Sinout, Cosout, incr_pc, Ain, Bin, Gin, Sinin, Cosin, ADDRin, DOUTin, W_D, start, finish;
 logic R0out, R1out, R2out, R3out, R4out, R5out, R6out, R7out, R8out, R9out, R10out, R11out, R12out, R13out, R14out, R15out, R16out, R17out, R18out, R19out, R20out, R21out, R22out, R23out, R24out, R25out, R26out, R27out, R28out, R29out, R30out, R31out;
 logic R0in, R1in, R2in, R3in, R4in, R5in, R6in, R7in, R8in, R9in, R10in, R11in, R12in, R13in, R14in, R15in, R16in, R17in, R18in, R19in, R20in, R21in, R22in, R23in, R24in, R25in, R26in, R27in, R28in, R29in, R30in, R31in;
 
@@ -57,7 +57,7 @@ end
 
 //R3in
 always @(*) begin
-	case (R2in)
+	case (R3in)
 		1'b0: pre_R3 = R3;
 		1'b1: pre_R3 = BUS;
 	endcase
@@ -570,11 +570,12 @@ always @(posedge clk) begin
 		W <= W_D;
 end
 
-controlunitFSM controlunitFSM (.clk(clk), .rst_n(rst_n), .run(run), .IR(IR), .R0out(R0out), .R1out(R1out), .R2out(R2out), .R3out(R3out), .R4out(R4out), .R5out(R5out), .R6out(R6out), .R7out(R7out), .R8out(R8out), .R9out(R9out), .R10out(R10out), .R11out(R11out), .R12out(R12out), .R13out(R13out), .R14out(R14out), .R15out(R15out), .R16out(R16out), .R17out(R17out), .R18out(R18out), .R19out(R19out), .R20out(R20out), .R21out(R21out), .R22out(R22out), .R23out(R23out), .R24out(R24out), .R25out(R25out), .R26out(R26out), .R27out(R27out), .R28out(R28out), .R29out(R29out), .R30out(R30out), .R31out(R31out), .R0in(R0in), .R1in(R1in), .R2in(R2in), .R3in(R3in), .R4in(R4in), .R5in(R5in), .R6in(R6in), .R7in(R7in), .R8in(R8in), .R9in(R9in), .R10in(R10in), .R11in(R11in), .R12in(R12in), .R13in(R13in), .R14in(R14in), .R15in(R15in), .R16in(R16in), .R17in(R17in), .R18in(R18in), .R19in(R19in), .R20in(R20in), .R21in(R21in), .R22in(R22in), .R23in(R23in), .R24in(R24in), .R25in(R25in), .R26in(R26in), .R27in(R27in), .R28in(R28in), .R29in(R29in), .R30in(R30in), .R31in(R31in), .IRin(IRin), .Gout(Gout), .DINout(DINout), .incr_pc(incr_pc), .Ain(Ain), .ALUControl(ALUControl), .Gin(Gin), .Sinin(Sinin), .Cosin(Cosin), .Bin(Bin), .ADDRin(ADDRin), .DOUTin(DOUTin), .W_D(W_D), .Done(Done), .start(start), .Sinout(Sinout), .Cosout(Cosout));
+controlunitFSM controlunitFSM (.clk(clk), .rst_n(rst_n), .run(run), .IR(IR), .R0out(R0out), .R1out(R1out), .R2out(R2out), .R3out(R3out), .R4out(R4out), .R5out(R5out), .R6out(R6out), .R7out(R7out), .R8out(R8out), .R9out(R9out), .R10out(R10out), .R11out(R11out), .R12out(R12out), .R13out(R13out), .R14out(R14out), .R15out(R15out), .R16out(R16out), .R17out(R17out), .R18out(R18out), .R19out(R19out), .R20out(R20out), .R21out(R21out), .R22out(R22out), .R23out(R23out), .R24out(R24out), .R25out(R25out), .R26out(R26out), .R27out(R27out), .R28out(R28out), .R29out(R29out), .R30out(R30out), .R31out(R31out), .R0in(R0in), .R1in(R1in), .R2in(R2in), .R3in(R3in), .R4in(R4in), .R5in(R5in), .R6in(R6in), .R7in(R7in), .R8in(R8in), .R9in(R9in), .R10in(R10in), .R11in(R11in), .R12in(R12in), .R13in(R13in), .R14in(R14in), .R15in(R15in), .R16in(R16in), .R17in(R17in), .R18in(R18in), .R19in(R19in), .R20in(R20in), .R21in(R21in), .R22in(R22in), .R23in(R23in), .R24in(R24in), .R25in(R25in), .R26in(R26in), .R27in(R27in), .R28in(R28in), .R29in(R29in), .R30in(R30in), .R31in(R31in), .IRin(IRin), .Gout(Gout), .DINout(DINout), .incr_pc(incr_pc), .Ain(Ain), .ALUControl(ALUControl), .Gin(Gin), .Sinin(Sinin), .Cosin(Cosin), .Bin(Bin), .ADDRin(ADDRin), .DOUTin(DOUTin), .W_D(W_D), .Done(Done), .start(start), .Sinout(Sinout), .Cosout(Cosout), .G(pre_G1), .finish(finish));
 
 multiplexer multiplexer (.DIN(DIN), .R0(R0), .R1(R1), .R2(R2), .R3(R3), .R4(R4), .R5(R5), .R6(R6), .R7(R7), .R8(R8), .R9(R9), .R10(R10), .R11(R11), .R12(R12), .R13(R13), .R14(R14), .R15(R15), .R16(R16), .R17(R17), .R18(R18), .R19(R19), .R20(R20), .R21(R21), .R22(R22), .R23(R23), .R24(R24), .R25(R25), .R26(R26), .R27(R27), .R28(R28), .R29(R29), .R30(R30), .R31(R31), .G(G), .Sin(Sin), .Cos(Cos), .R0out(R0out), .R1out(R1out), .R2out(R2out), .R3out(R3out), .R4out(R4out), .R5out(R5out), .R6out(R6out), .R7out(R7out), .R8out(R8out), .R9out(R9out), .R10out(R10out), .R11out(R11out), .R12out(R12out), .R13out(R13out), .R14out(R14out), .R15out(R15out), .R16out(R16out), .R17out(R17out), .R18out(R18out), .R19out(R19out), .R20out(R20out), .R21out(R21out), .R22out(R22out), .R23out(R23out), .R24out(R24out), .R25out(R25out), .R26out(R26out), .R27out(R27out), .R28out(R28out), .R29out(R29out), .R30out(R30out), .R31out(R31out), .Gout(Gout), .DINout(DINout), .Sinout(Sinout), .Cosout(Cosout), .BUS(BUS));
 
 alu alu (.a(A), .b(BUS), .ALUControl(ALUControl), .result(pre_G1), .V(V));
-cordic cordic (.clk(clk), .rst_n(rst_n), .angle(BUS), .start(start), .sin(pre_Sin1), .cos(pre_Cos1));
+
+cordic cordic (.clk(clk), .rst_n(rst_n), .angle(B), .start(start), .sin(pre_Sin1), .cos(pre_Cos1), .finish(finish));
 
 endmodule
