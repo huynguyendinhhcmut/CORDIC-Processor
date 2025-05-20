@@ -192,73 +192,79 @@ assign R30out = (outX[30] & RXout) | (outY[30] & RYout) | (outZ[30] & RZout);
 assign R31out1 = (outX[31] & RXout) | (outY[31] & RYout) | (outZ[31] & RZout);
 assign R31out = R31out1 ^ R31out2;
 
-parameter reset = 6'b00_0000;
-parameter ldADDR = 6'b00_0001;
-parameter PCp = 6'b00_0010;
-parameter fetch1 = 6'b00_0011;
-parameter fetch = 6'b00_0100;
-parameter mv = 6'b00_0101;
-parameter mvi1 = 6'b00_0110;
-parameter mvi2 = 6'b00_0111;
-parameter mvi3 = 6'b00_1000;
-parameter add1 = 6'b00_1001;
-parameter add2 = 6'b00_1010;
-parameter add3 = 6'b00_1011;
-parameter sub1 = 6'b00_1100;
-parameter sub2 = 6'b00_1101;
-parameter sub3 = 6'b00_1110;
-parameter ld1 = 6'b00_1111;
-parameter ld2 = 6'b01_0000;
-parameter ld3 = 6'b01_0001;
-parameter st1 = 6'b01_0010;
-parameter st2 = 6'b01_0011;
-parameter st3 = 6'b01_0100;
-parameter and1 = 6'b01_0101;
-parameter and2 = 6'b01_0110;
-parameter and3 = 6'b01_0111;
-parameter or1 = 6'b01_1000;
-parameter or2 = 6'b01_1001;
-parameter or3 = 6'b01_1010;
-parameter xor1 = 6'b01_1011;
-parameter xor2 = 6'b01_1100;
-parameter xor3 = 6'b01_1101;
-parameter not1 = 6'b01_1110;
-parameter not2 = 6'b01_1111;
-parameter not3 = 6'b10_0000;
-parameter brcpe1 = 6'b10_0001;
-parameter brcpl1 = 6'b10_0010;
-parameter brcpge1 = 6'b10_0011;
-parameter brcpne1 = 6'b10_0100;
-parameter srl1 = 6'b10_0101;
-parameter srl2 = 6'b10_0110;
-parameter srl3 = 6'b10_0111;
-parameter sll1 = 6'b10_1000;
-parameter sll2 = 6'b10_1001;
-parameter sll3 = 6'b10_1010;
-parameter sra1 = 6'b10_1011;
-parameter sra2 = 6'b10_1100;
-parameter sra3 = 6'b10_1101;
-parameter addf1 = 6'b10_1110;
-parameter addf2 = 6'b10_1111;
-parameter addf3 = 6'b11_0000;
-parameter subf1 = 6'b11_0001;
-parameter subf2 = 6'b11_0000;
-parameter subf3 = 6'b11_0001;
-parameter mulf1 = 6'b11_0010;
-parameter mulf2 = 6'b11_0011;
-parameter mulf3 = 6'b11_0100;
-parameter sin1 = 6'b11_0101;
-parameter sin2 = 6'b11_0110;
-parameter sin3 = 6'b11_0111;
-parameter sin4 = 6'b11_1000;
-parameter sin5 = 6'b11_1001;
-parameter cos1 = 6'b11_1010;
-parameter cos2 = 6'b11_1011;
-parameter cos3 = 6'b11_1100;
-parameter cos4 = 6'b11_1101;
-parameter cos5 = 6'b11_1110;
+parameter reset	  = 7'b000_0000; //0
+parameter ldADDR  = 7'b000_0001; //1
+parameter PCp 	  = 7'b000_0010; //2
+parameter fetch1  = 7'b000_0011; //3
+parameter fetch   = 7'b000_0100; //4
+parameter mv      = 7'b000_0101; //5
+parameter mvi1    = 7'b000_0110; //6
+parameter mvi2    = 7'b000_0111; //7
+parameter mvi3    = 7'b000_1000; //8
+parameter add1    = 7'b000_1001; //9
+parameter add2    = 7'b000_1010; //10
+parameter add3    = 7'b000_1011; //11
+parameter sub1    = 7'b000_1100; //12
+parameter sub2    = 7'b000_1101; //13
+parameter sub3    = 7'b000_1110; //14
+parameter ld1     = 7'b000_1111; //15
+parameter ld2     = 7'b001_0000; //16
+parameter ld3     = 7'b001_0001; //17
+parameter st1     = 7'b001_0010; //18
+parameter st2     = 7'b001_0011; //19
+parameter st3     = 7'b001_0100; //20
+parameter and1    = 7'b001_0101; //21
+parameter and2    = 7'b001_0110; //22
+parameter and3    = 7'b001_0111; //23
+parameter or1     = 7'b001_1000; //24
+parameter or2     = 7'b001_1001; //25
+parameter or3     = 7'b001_1010; //26
+parameter xor1    = 7'b001_1011; //27
+parameter xor2    = 7'b001_1100; //28
+parameter xor3    = 7'b001_1101; //29
+parameter not1    = 7'b001_1110; //30
+parameter not2    = 7'b001_1111; //31
+parameter not3    = 7'b010_0000; //32
+parameter cpe1  = 7'b010_0001; //33
+parameter cpe2  = 7'b010_0010; //34
+parameter cpl1  = 7'b010_0011; //35
+parameter cpl2  = 7'b010_0100; //36
+parameter cpge1 = 7'b010_0101; //37
+parameter cpge2 = 7'b010_0110; //38
+parameter cpne1 = 7'b010_0111; //39
+parameter cpne2 = 7'b010_1000; //40
+parameter srl1    = 7'b010_1001; //41
+parameter srl2    = 7'b010_1010; //42
+parameter srl3    = 7'b010_1011; //43
+parameter sll1    = 7'b010_1100; //44
+parameter sll2    = 7'b010_1101; //45
+parameter sll3    = 7'b010_1110; //46
+parameter sra1    = 7'b010_1111; //47
+parameter sra2    = 7'b011_0000; //48
+parameter sra3    = 7'b011_0001; //49
+parameter addf1   = 7'b011_0010; //50
+parameter addf2   = 7'b011_0011; //51
+parameter addf3   = 7'b011_0100; //52
+parameter subf1   = 7'b011_0101; //53
+parameter subf2   = 7'b011_0110; //54
+parameter subf3   = 7'b011_0111; //55
+parameter mulf1   = 7'b011_1000; //56
+parameter mulf2   = 7'b011_1001; //57
+parameter mulf3   = 7'b011_1010; //58
+parameter sin1    = 7'b011_1011; //59
+parameter sin2    = 7'b011_1100; //60
+parameter sin3    = 7'b011_1101; //61
+parameter sin4    = 7'b011_1110; //62
+parameter sin5    = 7'b011_1111; //63
+parameter cos1    = 7'b100_0000; //64
+parameter cos2    = 7'b100_0001; //65
+parameter cos3    = 7'b100_0010; //66
+parameter cos4    = 7'b100_0011; //67
+parameter cos5    = 7'b100_0100; //68
+parameter brit    = 7'b100_0101; //69
+parameter brif    = 7'b100_0110; //70
 
-logic [5:0] state, state_reg, state_next;
+logic [7:0] state, state_reg, state_next;
 
 always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
@@ -431,13 +437,13 @@ always @(*) begin
 			else if (IR[31:27] == 5'b01001)
 				state_next = not1;
 			else if (IR[31:27] == 5'b01010)
-				state_next = brcpe1;
+				state_next = cpe1;
 			else if (IR[31:27] == 5'b01011)
-				state_next = brcpl1;
+				state_next = cpl1;
 			else if (IR[31:27] == 5'b01100)
-				state_next = brcpge1;
+				state_next = cpge1;
 			else if (IR[31:27] == 5'b01101)
-				state_next = brcpne1;
+				state_next = cpne1;
 			else if (IR[31:27] == 5'b01110)
 				state_next = srl1;
 			else if (IR[31:27] == 5'b01111)
@@ -454,6 +460,10 @@ always @(*) begin
 				state_next = sin1;
 			else if (IR[31:27] == 5'b10101)
 				state_next = cos1;
+			else if (IR[31:27] == 5'b10110)
+				state_next = brit; // branch if true
+			else if (IR[31:27] == 5'b10111)
+				state_next = brif; // branch if false
 		end
 		
 		mv: begin
@@ -1240,7 +1250,35 @@ always @(*) begin
 			state_next = ldADDR;
 		end
 		
-		brcpe1: begin
+		cpe1: begin
+			RXout = 1;
+			RYout = 0;
+			RZout = 0;
+			Gout = 0;
+			DINout = 0;
+			IRin = 0;
+			Ain = 1;
+			Bin = 0;
+			RXin = 0;
+			RYin = 0;
+			RZin = 0;
+			Gin = 0;
+			Sinin = 0;
+			Cosin = 0;
+			Sinout = 0;
+			Cosout = 0;
+			ALUControl[3:0] = 4'b0000;
+			Done = 0;
+			ADDRin = 0;
+			DOUTin = 0;
+			W_D = 0;
+			incr_pc = 0;
+			R31out2 = 0;
+			start = 0;
+			state_next = cpe2;
+		end
+		
+		cpe2: begin
 			RXout = 0;
 			RYout = 1;
 			RZout = 0;
@@ -1252,28 +1290,51 @@ always @(*) begin
 			RXin = 0;
 			RYin = 0;
 			RZin = 0;
-			Gin = 0;
+			Gin = 1;
 			Sinin = 0;
 			Cosin = 0;
 			Sinout = 0;
 			Cosout = 0;
 			ALUControl[3:0] = 4'b1001;
-			Done = 0;
-			ADDRin = 1;
+			Done = 1;
+			ADDRin = 0;
 			DOUTin = 0;
 			W_D = 0;
 			incr_pc = 0;
 			R31out2 = 0;
 			start = 0;
 			state_next = ldADDR;
-			if (&G) begin
-				state_next = mv;
-			end else begin
-				state_next = ldADDR;
-			end
 		end
 		
-		brcpl1: begin
+		cpl1: begin
+			RXout = 1;
+			RYout = 0;
+			RZout = 0;
+			Gout = 0;
+			DINout = 0;
+			IRin = 0;
+			Ain = 1;
+			Bin = 0;
+			RXin = 0;
+			RYin = 0;
+			RZin = 0;
+			Gin = 0;
+			Sinin = 0;
+			Cosin = 0;
+			Sinout = 0;
+			Cosout = 0;
+			ALUControl[3:0] = 4'b0000;
+			Done = 0;
+			ADDRin = 0;
+			DOUTin = 0;
+			W_D = 0;
+			incr_pc = 0;
+			R31out2 = 0;
+			start = 0;
+			state_next = cpl2;
+		end
+		
+		cpl2: begin
 			RXout = 0;
 			RYout = 1;
 			RZout = 0;
@@ -1285,28 +1346,51 @@ always @(*) begin
 			RXin = 0;
 			RYin = 0;
 			RZin = 0;
-			Gin = 0;
+			Gin = 1;
 			Sinin = 0;
 			Cosin = 0;
 			Sinout = 0;
 			Cosout = 0;
 			ALUControl[3:0] = 4'b1010;
-			Done = 0;
-			ADDRin = 1;
+			Done = 1;
+			ADDRin = 0;
 			DOUTin = 0;
 			W_D = 0;
 			incr_pc = 0;
 			R31out2 = 0;
 			start = 0;
 			state_next = ldADDR;
-			if (&G) begin
-				state_next = mv;
-			end else begin
-				state_next = ldADDR;
-			end
 		end
 		
-		brcpge1: begin
+		cpge1: begin
+			RXout = 1;
+			RYout = 0;
+			RZout = 0;
+			Gout = 0;
+			DINout = 0;
+			IRin = 0;
+			Ain = 1;
+			Bin = 0;
+			RXin = 0;
+			RYin = 0;
+			RZin = 0;
+			Gin = 0;
+			Sinin = 0;
+			Cosin = 0;
+			Sinout = 0;
+			Cosout = 0;
+			ALUControl[3:0] = 4'b0000;
+			Done = 0;
+			ADDRin = 0;
+			DOUTin = 0;
+			W_D = 0;
+			incr_pc = 0;
+			R31out2 = 0;
+			start = 0;
+			state_next = cpge2;
+		end
+		
+		cpge2: begin
 			RXout = 0;
 			RYout = 1;
 			RZout = 0;
@@ -1318,28 +1402,51 @@ always @(*) begin
 			RXin = 0;
 			RYin = 0;
 			RZin = 0;
-			Gin = 0;
+			Gin = 1;
 			Sinin = 0;
 			Cosin = 0;
 			Sinout = 0;
 			Cosout = 0;
 			ALUControl[3:0] = 4'b1011;
-			Done = 0;
-			ADDRin = 1;
+			Done = 1;
+			ADDRin = 0;
 			DOUTin = 0;
 			W_D = 0;
 			incr_pc = 0;
 			R31out2 = 0;
 			start = 0;
 			state_next = ldADDR;
-			if (&G) begin
-				state_next = mv;
-			end else begin
-				state_next = ldADDR;
-			end
 		end
 		
-		brcpne1: begin
+		cpne1: begin
+			RXout = 1;
+			RYout = 0;
+			RZout = 0;
+			Gout = 0;
+			DINout = 0;
+			IRin = 0;
+			Ain = 1;
+			Bin = 0;
+			RXin = 0;
+			RYin = 0;
+			RZin = 0;
+			Gin = 0;
+			Sinin = 0;
+			Cosin = 0;
+			Sinout = 0;
+			Cosout = 0;
+			ALUControl[3:0] = 4'b0000;
+			Done = 0;
+			ADDRin = 0;
+			DOUTin = 0;
+			W_D = 0;
+			incr_pc = 0;
+			R31out2 = 0;
+			start = 0;
+			state_next = cpne2;
+		end
+		
+		cpne2: begin
 			RXout = 0;
 			RYout = 1;
 			RZout = 0;
@@ -1351,25 +1458,20 @@ always @(*) begin
 			RXin = 0;
 			RYin = 0;
 			RZin = 0;
-			Gin = 0;
+			Gin = 1;
 			Sinin = 0;
 			Cosin = 0;
 			Sinout = 0;
 			Cosout = 0;
 			ALUControl[3:0] = 4'b1100;
-			Done = 0;
-			ADDRin = 1;
+			Done = 1;
+			ADDRin = 0;
 			DOUTin = 0;
 			W_D = 0;
 			incr_pc = 0;
 			R31out2 = 0;
 			start = 0;
 			state_next = ldADDR;
-			if (&G) begin
-				state_next = mv;
-			end else begin
-				state_next = ldADDR;
-			end
 		end
 		
 		srl1: begin
@@ -2162,6 +2264,68 @@ always @(*) begin
 			R31out2 = 0;
 			start = 0;
 			state_next = ldADDR;
+		end
+		
+		brit: begin
+			RXout = 0;
+			RYout = 0;
+			RZout = 0;
+			Gout = 0;
+			DINout = 0;
+			IRin = 0;
+			Ain = 0;
+			Bin = 0;
+			RXin = 0;
+			RYin = 0;
+			RZin = 0;
+			Gin = 0;
+			Sinin = 0;
+			Cosin = 0;
+			Sinout = 0;
+			Cosout = 0;
+			ALUControl[3:0] = 4'b0000;
+			Done = 0;
+			ADDRin = 0;
+			DOUTin = 0;
+			W_D = 0;
+			incr_pc = 0;
+			R31out2 = 0;
+			start = 0;
+			if (&G) 
+				state_next = mv;
+			else if (~(&G))
+				state_next = ldADDR;
+		end
+		
+		brif: begin
+			RXout = 0;
+			RYout = 0;
+			RZout = 0;
+			Gout = 0;
+			DINout = 0;
+			IRin = 0;
+			Ain = 0;
+			Bin = 0;
+			RXin = 0;
+			RYin = 0;
+			RZin = 0;
+			Gin = 0;
+			Sinin = 0;
+			Cosin = 0;
+			Sinout = 0;
+			Cosout = 0;
+			ALUControl[3:0] = 4'b0000;
+			Done = 0;
+			ADDRin = 0;
+			DOUTin = 0;
+			W_D = 0;
+			incr_pc = 0;
+			R31out2 = 0;
+			start = 0;
+			if (~(&G)) 
+				state_next = mv;
+			else if (&G)
+				state_next = ldADDR;
 		end
 	endcase
 end
