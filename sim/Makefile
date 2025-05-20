@@ -22,7 +22,7 @@ RTL_SOURCES =  $(RTL_DIR)/alu.sv \
                $(RTL_DIR)/shift.sv \
                $(RTL_DIR)/controlunitFSM.sv \
                $(RTL_DIR)/processor.sv \
-               $(RTL_DIR)/ram.sv \
+               $(RTL_DIR)/ram_handmade.sv \
                $(RTL_DIR)/cordic_processor.sv \
 
 DV_SOURCES = $(DV_DIR)/cordic_processor_tb.sv
