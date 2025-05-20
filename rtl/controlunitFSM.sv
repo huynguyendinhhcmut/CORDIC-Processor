@@ -579,7 +579,7 @@ always @(*) begin
 			Bin = 0;
 			RXin = 0;
 			RYin = 0;
-			RZout = 0;
+			RZin = 0;
 			Gin = 0;
 			Sinin = 0;
 			Cosin = 0;
