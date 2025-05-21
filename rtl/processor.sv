@@ -20,7 +20,7 @@ always @(*) begin
 		1'b1: pre_R0 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R0 <= 32'b0;
 	else
@@ -34,7 +34,7 @@ always @(*) begin
 		1'b1: pre_R1 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R1 <= 32'b0;
 	else
@@ -48,7 +48,7 @@ always @(*) begin
 		1'b1: pre_R2 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R2 <= 32'b0;
 	else
@@ -62,7 +62,7 @@ always @(*) begin
 		1'b1: pre_R3 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R3 <= 32'b0;
 	else
@@ -76,7 +76,7 @@ always @(*) begin
 		1'b1: pre_R4 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R4 <= 32'b0;
 	else
@@ -90,7 +90,7 @@ always @(*) begin
 		1'b1: pre_R5 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R5 <= 32'b0;
 	else
@@ -104,7 +104,7 @@ always @(*) begin
 		1'b1: pre_R6 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R6 <= 32'b0;
 	else
@@ -118,7 +118,7 @@ always @(*) begin
 		1'b1: pre_R7 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R7 <= 32'b0;
 	else
@@ -132,7 +132,7 @@ always @(*) begin
 		1'b1: pre_R8 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R8 <= 32'b0;
 	else
@@ -146,7 +146,7 @@ always @(*) begin
 		1'b1: pre_R9 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R9 <= 32'b0;
 	else
@@ -160,7 +160,7 @@ always @(*) begin
 		1'b1: pre_R10 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R10 <= 32'b0;
 	else
@@ -174,7 +174,7 @@ always @(*) begin
 		1'b1: pre_R11 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R11 <= 32'b0;
 	else
@@ -188,7 +188,7 @@ always @(*) begin
 		1'b1: pre_R12 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R12 <= 32'b0;
 	else
@@ -202,7 +202,7 @@ always @(*) begin
 		1'b1: pre_R13 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R13 <= 32'b0;
 	else
@@ -216,7 +216,7 @@ always @(*) begin
 		1'b1: pre_R14 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R14 <= 32'b0;
 	else
@@ -230,7 +230,7 @@ always @(*) begin
 		1'b1: pre_R15 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R15 <= 32'b0;
 	else
@@ -244,7 +244,7 @@ always @(*) begin
 		1'b1: pre_R16 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R16 <= 32'b0;
 	else
@@ -258,7 +258,7 @@ always @(*) begin
 		1'b1: pre_R17 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R17 <= 32'b0;
 	else
@@ -272,7 +272,7 @@ always @(*) begin
 		1'b1: pre_R18 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R18 <= 32'b0;
 	else
@@ -286,7 +286,7 @@ always @(*) begin
 		1'b1: pre_R19 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R19 <= 32'b0;
 	else
@@ -300,7 +300,7 @@ always @(*) begin
 		1'b1: pre_R20 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R20 <= 32'b0;
 	else
@@ -314,7 +314,7 @@ always @(*) begin
 		1'b1: pre_R21 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R21 <= 32'b0;
 	else
@@ -328,7 +328,7 @@ always @(*) begin
 		1'b1: pre_R22 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R22 <= 32'b0;
 	else
@@ -342,7 +342,7 @@ always @(*) begin
 		1'b1: pre_R23 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R23 <= 32'b0;
 	else
@@ -356,7 +356,7 @@ always @(*) begin
 		1'b1: pre_R24 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R24 <= 32'b0;
 	else
@@ -370,7 +370,7 @@ always @(*) begin
 		1'b1: pre_R25 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R25 <= 32'b0;
 	else
@@ -384,7 +384,7 @@ always @(*) begin
 		1'b1: pre_R26 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R26 <= 32'b0;
 	else
@@ -398,7 +398,7 @@ always @(*) begin
 		1'b1: pre_R27 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R27 <= 32'b0;
 	else
@@ -412,7 +412,7 @@ always @(*) begin
 		1'b1: pre_R28 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R28 <= 32'b0;
 	else
@@ -426,7 +426,7 @@ always @(*) begin
 		1'b1: pre_R29 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R29 <= 32'b0;
 	else
@@ -440,7 +440,7 @@ always @(*) begin
 		1'b1: pre_R30 = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		R30 <= 32'b0;
 	else
@@ -457,7 +457,7 @@ always @(*) begin
 		1'b1: pre_A = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		A <= 32'b0;
 	else
@@ -471,7 +471,7 @@ always @(*) begin
 		1'b1: pre_B = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		B <= 32'b0;
 	else
@@ -485,7 +485,7 @@ always @(*) begin
 		1'b1: pre_G = pre_G1;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		G <= 32'b0;
 	else
@@ -499,7 +499,7 @@ always @(*) begin
 		1'b1: pre_Sin = pre_Sin1;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		Sin <= 32'b0;
 	else
@@ -513,7 +513,7 @@ always @(*) begin
 		1'b1: pre_Cos = pre_Cos1;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		Cos <= 32'b0;
 	else
@@ -527,7 +527,7 @@ always @(*) begin
 		1'b1: pre_IR = DIN;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		IR <= 32'b0;
 	else
@@ -541,7 +541,7 @@ always @(*) begin
 		1'b1: pre_ADDR = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		ADDR <= 32'b0;
 	else
@@ -555,7 +555,7 @@ always @(*) begin
 		1'b1: pre_DOUT = BUS;
 	endcase
 end
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		DOUT <= 32'b0;
 	else
@@ -563,7 +563,7 @@ always @(posedge clk) begin
 end
 
 //W_D
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
 		W <= 32'b0;
 	else
