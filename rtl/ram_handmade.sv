@@ -1,12 +1,12 @@
 module ram_handmade (
     input logic clk,
     input logic wr_en,
-    input logic [31:0] address,
+    input logic [9:0] address,
     input logic [31:0] data_in,
     output logic [31:0] data_out
 );
 
-logic [31:0] ram_block [0:4294967295];
+logic [31:0] ram_block [0:1024];
 
 initial begin
     ram_block[0] = 32'b00001_000_0000_0000_0_00000_00001_00000; // R1 mvi (RX)
