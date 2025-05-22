@@ -192,9 +192,9 @@ assign R30out = (outX[30] & RXout) | (outY[30] & RYout) | (outZ[30] & RZout);
 assign R31out1 = (outX[31] & RXout) | (outY[31] & RYout) | (outZ[31] & RZout);
 assign R31out = R31out1 ^ R31out2;
 
-parameter reset	  = 7'b000_0000; //0
+parameter reset	= 7'b000_0000; //0
 parameter ldADDR  = 7'b000_0001; //1
-parameter PCp 	  = 7'b000_0010; //2
+parameter PCp 	   = 7'b000_0010; //2
 parameter fetch1  = 7'b000_0011; //3
 parameter fetch   = 7'b000_0100; //4
 parameter mv      = 7'b000_0101; //5
@@ -225,14 +225,14 @@ parameter xor3    = 7'b001_1101; //29
 parameter not1    = 7'b001_1110; //30
 parameter not2    = 7'b001_1111; //31
 parameter not3    = 7'b010_0000; //32
-parameter cpe1  = 7'b010_0001; //33
-parameter cpe2  = 7'b010_0010; //34
-parameter cpl1  = 7'b010_0011; //35
-parameter cpl2  = 7'b010_0100; //36
-parameter cpge1 = 7'b010_0101; //37
-parameter cpge2 = 7'b010_0110; //38
-parameter cpne1 = 7'b010_0111; //39
-parameter cpne2 = 7'b010_1000; //40
+parameter cpe1    = 7'b010_0001; //33
+parameter cpe2    = 7'b010_0010; //34
+parameter cpl1    = 7'b010_0011; //35
+parameter cpl2    = 7'b010_0100; //36
+parameter cpge1   = 7'b010_0101; //37
+parameter cpge2   = 7'b010_0110; //38
+parameter cpne1   = 7'b010_0111; //39
+parameter cpne2   = 7'b010_1000; //40
 parameter srl1    = 7'b010_1001; //41
 parameter srl2    = 7'b010_1010; //42
 parameter srl3    = 7'b010_1011; //43
@@ -2333,5 +2333,3 @@ end
 assign state = state_reg;
 
 endmodule
-
-
