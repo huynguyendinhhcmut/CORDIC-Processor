@@ -301,9 +301,9 @@ always @(*) begin
 			incr_pc = 0;
 			R31out2 = 0;
 			start = 0;
-			if (~rst_n)
+			if (rst_n)
 				state_next = reset;
-			else if (rst_n & run)
+			else if (~rst_n & run)
 				state_next = ldADDR;
 		end
 		
