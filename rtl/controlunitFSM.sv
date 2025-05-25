@@ -464,6 +464,8 @@ always @(*) begin
 				state_next = brit; // branch if true
 			else if (IR[31:27] == 5'b10111)
 				state_next = brif; // branch if false
+			else 
+				state_next = ldADDR;
 		end
 		
 		mv: begin
