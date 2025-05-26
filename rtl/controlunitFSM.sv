@@ -264,7 +264,7 @@ parameter cos5    = 7'b100_0100; //68
 parameter brit    = 7'b100_0101; //69
 parameter brif    = 7'b100_0110; //70
 
-logic [7:0] state, state_reg, state_next;
+logic [7:0] state_reg, state_next;
 
 always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
@@ -2331,7 +2331,5 @@ always @(*) begin
 		end
 	endcase
 end
-
-assign state = state_reg;
 
 endmodule
