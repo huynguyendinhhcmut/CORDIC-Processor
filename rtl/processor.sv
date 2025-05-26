@@ -565,7 +565,7 @@ end
 //W_D
 always @(posedge clk or negedge rst_n) begin
 	if (~rst_n)
-		W <= 32'b0;
+		W <= 1'b0;
 	else
 		W <= W_D;
 end
